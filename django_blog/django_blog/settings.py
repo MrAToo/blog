@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'my_blog',
     'users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -140,5 +141,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mratbm00@gmail.com'
-EMAIL_HOST_PASSWORD = 'mvnwabgylpdjrctm'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES' : [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
