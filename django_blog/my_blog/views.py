@@ -7,11 +7,6 @@ from django.views.generic import (
     DeleteView
 )    
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from rest_framework import generics, viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .serializers import PostSerializer
 
 from .models import *
 
@@ -88,27 +83,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'my_blog/about.html', {'title': 'About'})
-
-
-'''API'''
-
-
-class PostViewSet(viewsets.ModelViewSet):
-    '''CRUD'''
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-    def get_queryset(self):
-        '''возвращает список определенных постов'''
-        pk = self.kwargs.get('pk')
-        if not pk:
-            return Post.objects.all()[:3]
-
-        return Post.objects.filter(pk=pk)
-
-
-    @action(methods=['get'], detail=True)
-    def author(self, request, pk=None):
-        '''создаёт новый url по названию функции'''
-        authors = User.objects.get(pk=pk)
-        return Response({'authors': authors.username})
