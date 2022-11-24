@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 
+
 def registration(request):
     '''Регистрация пользователя'''
     if request.method == 'POST':
@@ -20,6 +21,7 @@ def registration(request):
         
         
     return render(request, 'users/register.html', {'form':form})        
+
 
 @login_required
 def profile(request):
@@ -46,5 +48,3 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
-
-
