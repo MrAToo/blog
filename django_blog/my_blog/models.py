@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
 class Post(models.Model):
     '''Класс поста'''
     title = models.CharField(max_length=100, verbose_name='Заголовок')
@@ -12,6 +13,7 @@ class Post(models.Model):
         User,
         on_delete = models.CASCADE,
     )
+
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})

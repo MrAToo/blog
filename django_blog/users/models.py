@@ -7,8 +7,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
+
     def __str__(self):
         return f'{self.user.username} Profile'
+
 
     def save(self):
         '''Уменьшает изображение если его размер больше 300 пикселей'''

@@ -4,9 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import *
 
+
 class UserRegisterForm(UserCreationForm):
     '''Форма регистрации'''
     email = forms.EmailField()
+
 
     class Meta:
         '''В этом классе находится то, с чем будет взаимодействовать форма выше'''
@@ -17,6 +19,7 @@ class UserRegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     '''Форма изменения данных пользователя'''
     email = forms.EmailField()
+
 
     class Meta:
         model = User

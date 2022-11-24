@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from .models import *
 
+
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     '''Создание профиля после регистрации'''
