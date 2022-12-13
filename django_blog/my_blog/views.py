@@ -10,6 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import *
 
+asdasd
 
 class PostListView(ListView):
     '''Список постов'''
