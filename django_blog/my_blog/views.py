@@ -7,6 +7,8 @@ from django.views.generic import (
     DeleteView
 )    
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponseRedirect
+
 
 from .models import *
 
@@ -78,8 +80,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-        return False         
+        return False    
 
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)             
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
 def about(request):
     return render(request, 'my_blog/about.html', {'title': 'About'})
