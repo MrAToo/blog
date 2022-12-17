@@ -18,6 +18,14 @@
         </div>
         <h2 class="article-title" >{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
+        <br>
+        <form action="{% url 'like_view' post.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">
+                Like
+                {{ post.likes.count }}
+            </button>
+        </form>
     </div>
 </article>
 {% endblock %}

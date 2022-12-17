@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
+
 class Post(models.Model):
     '''Класс поста'''
     title = models.CharField(max_length=100, verbose_name='Заголовок')
@@ -12,7 +13,9 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         on_delete = models.CASCADE,
+        related_name='my_posts'
     )
+    likes = models.ManyToManyField(User, related_name='post')
 
 
     def get_absolute_url(self):
@@ -21,3 +24,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
